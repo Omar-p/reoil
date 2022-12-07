@@ -80,6 +80,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<image>
+						<name>omar077/reoil</name>
+					</image>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
