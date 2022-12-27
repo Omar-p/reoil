@@ -4,6 +4,7 @@ import com.example.reoil.GenericResponse;
 import com.example.reoil.config.SecurityConfig;
 import com.example.reoil.registration.dtos.UserRegistration;
 import com.example.reoil.domain.security.User;
+import com.example.reoil.repositories.RoleRepository;
 import com.example.reoil.user.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,6 +36,9 @@ class RegistrationControllerTest {
   MockMvc mockMvc;
   @MockBean
   RegistrationService registrationService;
+
+  @MockBean
+  RoleRepository roleRepository;
 
   @MockBean
   UserService userService;
