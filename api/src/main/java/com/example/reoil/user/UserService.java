@@ -1,20 +1,28 @@
 package com.example.reoil.user;
 
-import com.example.reoil.model.VerificationToken;
-import com.example.reoil.model.repositories.VerificationTokenRepository;
+import com.example.reoil.domain.VerificationToken;
+import com.example.reoil.domain.security.Authority;
+import com.example.reoil.domain.security.Role;
+import com.example.reoil.domain.security.User;
+import com.example.reoil.repositories.RoleRepository;
+import com.example.reoil.repositories.VerificationTokenRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService  {
 
   private final UserRepository userRepository;
   private final VerificationTokenRepository tokenRepository;
+  private final RoleRepository roleRepository;
 
-  public UserService(UserRepository userRepository, VerificationTokenRepository verificationTokenRepository) {
+  public UserService(UserRepository userRepository, VerificationTokenRepository verificationTokenRepository, RoleRepository roleRepository) {
     this.userRepository = userRepository;
     this.tokenRepository = verificationTokenRepository;
+    this.roleRepository = roleRepository;
   }
 
 
@@ -27,7 +35,7 @@ public class UserService  {
   }
 
   public User registerNewUserAccount(User user) {
-    user.setRole(Role.USER);
+    user.setRoles(new HashSet<>(Set.of(roleRepository.findByName("ROLE_USER"))));
     return userRepository.save(user);
   }
 

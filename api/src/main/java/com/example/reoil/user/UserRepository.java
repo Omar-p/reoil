@@ -1,7 +1,7 @@
 package com.example.reoil.user;
 
+import com.example.reoil.domain.security.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.Optional;
 

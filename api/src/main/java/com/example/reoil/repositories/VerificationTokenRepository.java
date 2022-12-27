@@ -1,6 +1,6 @@
-package com.example.reoil.model.repositories;
+package com.example.reoil.repositories;
 
-import com.example.reoil.model.VerificationToken;
+import com.example.reoil.domain.VerificationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

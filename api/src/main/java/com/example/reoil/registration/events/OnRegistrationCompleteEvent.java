@@ -1,8 +1,7 @@
 package com.example.reoil.registration.events;
 
-import com.example.reoil.user.User;
+import com.example.reoil.domain.security.User;
 import org.springframework.context.ApplicationEvent;
-import org.springframework.stereotype.Component;
 
 import java.util.Locale;
 

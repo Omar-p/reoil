@@ -1,18 +1,25 @@
-package com.example.reoil.user;
+package com.example.reoil.domain.security;
 
 import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
 
   @SequenceGenerator(
       name = "users_id_generator",
-      initialValue = 1,
       allocationSize = 1,
       sequenceName = "users_id_seq"
   )
@@ -27,13 +34,19 @@ public class User implements UserDetails {
   private String password;
   private String phone;
 
-  @Enumerated(EnumType.STRING)
-  private Role role;
+  @Singular
+  @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+  @JoinTable(name = "user_role",
+      joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
+      inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
+  private Set<Role> roles;
+
+  @Transient
+  private Set<Authority> authorities;
 
   private boolean enabled;
 
-  public User() {
-  }
+
 
   public User(String username, String email, String password, String phone) {
     this.username = username;
@@ -45,49 +58,10 @@ public class User implements UserDetails {
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return role.getGrantedAuthorities();
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public String getPhone() {
-    return phone;
-  }
-
-  public void setPhone(String phone) {
-    this.phone = phone;
-  }
-
-  @Override
-  public String getPassword() {
-    return null;
-  }
-
-  @Override
-  public String getUsername() {
-    return null;
+    return this.roles.stream()
+        .map(Role::getAuthorities)
+        .flatMap(Set::stream)
+        .collect(Collectors.toSet());
   }
 
   @Override
@@ -110,14 +84,8 @@ public class User implements UserDetails {
     return enabled;
   }
 
-  public void setEnabled(boolean enabled) {
-    this.enabled = enabled;
-  }
-  public void setRole(Role role) {
-    this.role = role;
-  }
 
-  public Role getRole() {
-    return role;
-  }
+
+
+
 }

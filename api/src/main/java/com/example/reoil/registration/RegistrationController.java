@@ -1,7 +1,6 @@
 package com.example.reoil.registration;
 
 import com.example.reoil.GenericResponse;
-import com.example.reoil.model.VerificationToken;
 import com.example.reoil.registration.dtos.UserRegistration;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;

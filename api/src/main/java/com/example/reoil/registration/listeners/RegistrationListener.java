@@ -2,7 +2,7 @@ package com.example.reoil.registration.listeners;
 
 import com.example.reoil.registration.events.OnRegistrationCompleteEvent;
 import com.example.reoil.service.MailService;
-import com.example.reoil.user.User;
+import com.example.reoil.domain.security.User;
 import com.example.reoil.user.UserService;
 import jakarta.mail.MessagingException;
 import org.springframework.context.ApplicationListener;

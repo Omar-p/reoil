@@ -1,12 +1,12 @@
 package com.example.reoil.registration;
 
 import com.example.reoil.GenericResponse;
-import com.example.reoil.model.VerificationToken;
+import com.example.reoil.domain.VerificationToken;
 import com.example.reoil.registration.dtos.UserRegistration;
 import com.example.reoil.registration.events.OnRegistrationCompleteEvent;
 import com.example.reoil.registration.exceptions.ExpiredRegistrationTokenException;
 import com.example.reoil.registration.exceptions.InvalidRegistrationTokenException;
-import com.example.reoil.user.User;
+import com.example.reoil.domain.security.User;
 import com.example.reoil.user.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.ApplicationEventPublisher;

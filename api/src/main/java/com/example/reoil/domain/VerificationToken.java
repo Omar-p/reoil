@@ -1,7 +1,7 @@
-package com.example.reoil.model;
+package com.example.reoil.domain;
 
 
-import com.example.reoil.user.User;
+import com.example.reoil.domain.security.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
