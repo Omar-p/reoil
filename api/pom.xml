@@ -112,6 +112,12 @@
 					<image>
 						<name>omar077/reoil:${image.tag}</name>
 					</image>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
 				</configuration>
 			</plugin>
 		</plugins>
