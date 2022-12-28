@@ -6,6 +6,9 @@ import com.example.reoil.domain.security.Role;
 import com.example.reoil.domain.security.User;
 import com.example.reoil.repositories.RoleRepository;
 import com.example.reoil.repositories.VerificationTokenRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -13,7 +16,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class UserService  {
+public class UserService implements UserDetailsService {
 
   private final UserRepository userRepository;
   private final VerificationTokenRepository tokenRepository;
@@ -50,5 +53,11 @@ public class UserService  {
 
   public void saveRegisteredUser(User user) {
     userRepository.save(user);
+  }
+
+  @Override
+  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    final Optional<User> user = this.findByEmail(email);
+    return user.orElseThrow(() -> new UsernameNotFoundException("no account match this email: " + email));
   }
 }
