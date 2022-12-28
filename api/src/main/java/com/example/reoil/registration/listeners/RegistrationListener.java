@@ -43,7 +43,7 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
     String recipientAddress = user.getEmail();
     String subject = "Registration Confirmation";
     String confirmationUrl
-        = event.getAppUrl() + "/api/registrationConfirm?token=" + token;
+        = event.getAppUrl() + "/api/registration/token?token=" + token;
     String message = messageSource.getMessage("registration.email", null, event.getLocale());
 
     String text = String.format("%s <br><br> http://localhost:8080%s", message, confirmationUrl);
