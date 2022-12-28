@@ -1,7 +1,7 @@
 package com.example.reoil.registration;
 
 import com.example.reoil.GenericResponse;
-import com.example.reoil.config.SecurityConfig;
+import com.example.reoil.config.security.SecurityConfig;
 import com.example.reoil.registration.dtos.UserRegistration;
 import com.example.reoil.domain.security.User;
 import com.example.reoil.repositories.RoleRepository;
@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 //@WebMvcTest(controllers = RegistrationController.class)
 //@ContextConfiguration(classes = SecurityConfig.class)
-@WebMvcTest
+@WebMvcTest(controllers = {RegistrationController.class})
 @Import(SecurityConfig.class)
 class RegistrationControllerTest {
 
