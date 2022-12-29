@@ -38,9 +38,13 @@ public class SecurityConfig {
         .cors(Customizer.withDefaults())
         .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests( auth -> auth
-            .requestMatchers("/api/auth", "/api/registration", "/api/registration/token").permitAll()
+            .requestMatchers("/api/auth", "/api/registration", "/api/registration/token" , "/swagger-ui/**", "/v3/api-docs/**").permitAll()
+            .requestMatchers("/h2-console/**", "/h2-console").permitAll()
             .anyRequest().authenticated()
         )
+        .headers(httpSecurityHeadersConfigurer -> {
+          httpSecurityHeadersConfigurer.frameOptions().sameOrigin();
+        })
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
         .build();
