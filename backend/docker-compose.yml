@@ -1,0 +1,24 @@
+services:
+  app:
+    image: ghcr.io/omar-p/reoil:latest
+    container_name: reoil
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/reoil
+      - APP_URL=http://localhost:8080
+      - DISABLE_EMAIL_VERIFICATION=false
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=reoil
+    volumes:
+      - ./postgres:/var/lib/postgresql/data

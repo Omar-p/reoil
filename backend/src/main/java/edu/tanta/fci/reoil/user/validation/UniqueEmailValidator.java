@@ -1,6 +1,6 @@
 package edu.tanta.fci.reoil.user.validation;
 
-import edu.tanta.fci.reoil.user.repositories.UserRepository;
+import edu.tanta.fci.reoil.repositories.UserRepository;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

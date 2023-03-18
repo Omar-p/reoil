@@ -1,4 +1,4 @@
-package edu.tanta.fci.reoil.user.model;
+package edu.tanta.fci.reoil.password.model;
 
 public record ChangePassword(
     String oldPassword,

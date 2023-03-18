@@ -1,0 +1,31 @@
+# Reoil
+
+Registration
+
+
+.request
+include::{snippets}/registration/http-request.adoc[]
+
+.response
+include::{snippets}/registration/http-response.adoc[]
+
+'''
+
+'''
+
+
+Token Verification
+
+
+
+.request
+include::{snippets}/registration-verify/http-request.adoc[]
+
+.response
+include::{snippets}/registration-verify/http-response.adoc[]
+
+
+
+Request Fields
+include::{snippets}/registration/request-fields.adoc[]
+

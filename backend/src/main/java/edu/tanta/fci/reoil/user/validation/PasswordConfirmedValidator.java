@@ -1,7 +1,7 @@
 package edu.tanta.fci.reoil.user.validation;
 
 
-import edu.tanta.fci.reoil.user.model.ChangePassword;
+import edu.tanta.fci.reoil.password.model.ChangePassword;
 import edu.tanta.fci.reoil.user.model.RegistrationRequest;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

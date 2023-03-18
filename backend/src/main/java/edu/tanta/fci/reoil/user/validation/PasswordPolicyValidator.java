@@ -19,6 +19,7 @@ public class PasswordPolicyValidator implements ConstraintValidator<PasswordPoli
 	
 	@Override
 	public boolean isValid(String password, ConstraintValidatorContext context) {
+		System.out.println("Password: " + password);
 		List<Rule> passwordRules = new ArrayList<>();
 		passwordRules.add(new LengthRule(10, 128));
 		CharacterCharacteristicsRule passwordChars = 
