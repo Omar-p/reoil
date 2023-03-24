@@ -1,6 +1,7 @@
 package edu.tanta.fci.reoil.exceptions;
 
 import jakarta.validation.ConstraintViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -41,5 +42,15 @@ public class CustomErrorController {
         }).collect(Collectors.toList());
 
     return ResponseEntity.badRequest().body(errorList);
+  }
+
+  @ExceptionHandler(NotFoundException.class)
+  ResponseEntity<?> handleNotFound(NotFoundException exception){
+    return new ResponseEntity<>(Map.of("message", exception.getMessage()), HttpStatus.NOT_FOUND);
+  }
+
+  @ExceptionHandler(NotEnoughPointException.class)
+  ResponseEntity<?> handleNotEnoughPoint(NotEnoughPointException exception){
+    return new ResponseEntity<>(Map.of("message", exception.getMessage()), HttpStatus.BAD_REQUEST);
   }
 }

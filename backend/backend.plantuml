@@ -1,0 +1,657 @@
+@startuml
+
+title __BACKEND's Class Diagram__\n
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      class edu.tanta.fci.reoil.BackendApplication {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace config {
+        class edu.tanta.fci.reoil.config.RsaKeyProperties {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace config {
+        class edu.tanta.fci.reoil.config.SecurityConfig {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace controller {
+        class edu.tanta.fci.reoil.controller.AuthController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace controller {
+        class edu.tanta.fci.reoil.controller.CharityController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace domain {
+        class edu.tanta.fci.reoil.domain.Charity {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace domain {
+        class edu.tanta.fci.reoil.domain.Program {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace domain {
+        namespace security {
+          class edu.tanta.fci.reoil.domain.security.Authority {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace domain {
+        namespace security {
+          class edu.tanta.fci.reoil.domain.security.Role {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace exceptions {
+        class edu.tanta.fci.reoil.exceptions.BadRequestException {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace exceptions {
+        class edu.tanta.fci.reoil.exceptions.CustomErrorController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace exceptions {
+        class edu.tanta.fci.reoil.exceptions.EmailIsAlreadyExist {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace exceptions {
+        class edu.tanta.fci.reoil.exceptions.NewPasswordEqualOldPasswordException {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace exceptions {
+        class edu.tanta.fci.reoil.exceptions.NotFoundException {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace exceptions {
+        class edu.tanta.fci.reoil.exceptions.WrongPasswordException {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace password {
+        class edu.tanta.fci.reoil.password.ForgetPasswordEvent {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace password {
+        class edu.tanta.fci.reoil.password.ForgetPasswordListener {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace password {
+        class edu.tanta.fci.reoil.password.PasswordController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace password {
+        class edu.tanta.fci.reoil.password.PasswordService {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace password {
+        class edu.tanta.fci.reoil.password.ResetPasswordCode {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace password {
+        interface edu.tanta.fci.reoil.password.ResetPasswordCodeRepository {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace password {
+        namespace model {
+          class edu.tanta.fci.reoil.password.model.ChangePassword {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace password {
+        namespace model {
+          class edu.tanta.fci.reoil.password.model.ResetPassword {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace repositories {
+        interface edu.tanta.fci.reoil.repositories.AddressRepository {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace repositories {
+        interface edu.tanta.fci.reoil.repositories.CharityRepository {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace repositories {
+        interface edu.tanta.fci.reoil.repositories.RoleRepository {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace repositories {
+        interface edu.tanta.fci.reoil.repositories.UserRepository {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace service {
+        class edu.tanta.fci.reoil.service.AccessTokenService {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace service {
+        class edu.tanta.fci.reoil.service.AuthenticationService {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        class edu.tanta.fci.reoil.user.UserController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        class edu.tanta.fci.reoil.user.UserService {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace entities {
+          class edu.tanta.fci.reoil.user.entities.Address {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace entities {
+          class edu.tanta.fci.reoil.user.entities.User {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace entities {
+          class edu.tanta.fci.reoil.user.entities.Verification {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace model {
+          class edu.tanta.fci.reoil.user.model.AddressResponse {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace model {
+          class edu.tanta.fci.reoil.user.model.Login {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace model {
+          class edu.tanta.fci.reoil.user.model.NewAddress {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace model {
+          class edu.tanta.fci.reoil.user.model.Profile {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace model {
+          class edu.tanta.fci.reoil.user.model.ProfileUpdate {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace model {
+          class edu.tanta.fci.reoil.user.model.RegistrationRequest {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace model {
+          class edu.tanta.fci.reoil.user.model.UserProfile {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace registration {
+          class edu.tanta.fci.reoil.user.registration.RegistrationController {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace registration {
+          class edu.tanta.fci.reoil.user.registration.RegistrationService {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace registration {
+          interface edu.tanta.fci.reoil.user.registration.VerificationCodeRepository {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace registration {
+          class edu.tanta.fci.reoil.user.registration.VerificationService {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace registration {
+          namespace events {
+            class edu.tanta.fci.reoil.user.registration.events.UserRegistrationEvent {
+            }
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace registration {
+          namespace listeners {
+            class edu.tanta.fci.reoil.user.registration.listeners.EmailVerificationListener {
+            }
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace validation {
+          interface edu.tanta.fci.reoil.user.validation.PasswordConfirmed {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace validation {
+          class edu.tanta.fci.reoil.user.validation.PasswordConfirmedValidator {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace validation {
+          interface edu.tanta.fci.reoil.user.validation.PasswordPolicy {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace validation {
+          class edu.tanta.fci.reoil.user.validation.PasswordPolicyValidator {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace validation {
+          interface edu.tanta.fci.reoil.user.validation.UniqueEmail {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace validation {
+          class edu.tanta.fci.reoil.user.validation.UniqueEmailValidator {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace validation {
+          interface edu.tanta.fci.reoil.user.validation.UniqueUsername {
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace du.tanta.fci.reoil {
+      namespace user {
+        namespace validation {
+          class edu.tanta.fci.reoil.user.validation.UniqueUsernameValidator {
+          }
+        }
+      }
+    }
+  }
+  
+
+  edu.tanta.fci.reoil.config.SecurityConfig o-- edu.tanta.fci.reoil.config.RsaKeyProperties : rsaKeys
+  edu.tanta.fci.reoil.controller.AuthController o-- edu.tanta.fci.reoil.service.AuthenticationService : authenticationService
+  edu.tanta.fci.reoil.controller.CharityController o-- edu.tanta.fci.reoil.repositories.CharityRepository : charityRepository
+  edu.tanta.fci.reoil.domain.Program o-- edu.tanta.fci.reoil.domain.Charity : charity
+  edu.tanta.fci.reoil.domain.security.Authority .up.|> org.springframework.security.core.GrantedAuthority
+  edu.tanta.fci.reoil.password.ForgetPasswordEvent -up-|> org.springframework.context.ApplicationEvent
+  edu.tanta.fci.reoil.password.ForgetPasswordListener .up.|> org.springframework.context.ApplicationListener
+  edu.tanta.fci.reoil.password.ForgetPasswordListener o-- edu.tanta.fci.reoil.password.PasswordService : passwordService
+  edu.tanta.fci.reoil.password.ForgetPasswordListener o-- edu.tanta.fci.reoil.user.UserService : userService
+  edu.tanta.fci.reoil.password.PasswordController o-- edu.tanta.fci.reoil.password.PasswordService : passwordService
+  edu.tanta.fci.reoil.password.PasswordService o-- edu.tanta.fci.reoil.service.AccessTokenService : accessTokenService
+  edu.tanta.fci.reoil.password.PasswordService o-- edu.tanta.fci.reoil.password.ResetPasswordCodeRepository : resetPasswordCodeRepository
+  edu.tanta.fci.reoil.password.PasswordService o-- edu.tanta.fci.reoil.user.UserService : userService
+  edu.tanta.fci.reoil.service.AuthenticationService o-- edu.tanta.fci.reoil.service.AccessTokenService : accessTokenService
+  edu.tanta.fci.reoil.user.UserController o-- edu.tanta.fci.reoil.user.UserService : userService
+  edu.tanta.fci.reoil.user.UserService .up.|> org.springframework.security.core.userdetails.UserDetailsService
+  edu.tanta.fci.reoil.user.UserService o-- edu.tanta.fci.reoil.repositories.AddressRepository : addressRepository
+  edu.tanta.fci.reoil.user.UserService o-- edu.tanta.fci.reoil.repositories.RoleRepository : roleRepository
+  edu.tanta.fci.reoil.user.UserService o-- edu.tanta.fci.reoil.repositories.UserRepository : userRepository
+  edu.tanta.fci.reoil.user.entities.Address o-- edu.tanta.fci.reoil.user.entities.User : user
+  edu.tanta.fci.reoil.user.entities.User .up.|> org.springframework.security.core.userdetails.UserDetails
+  edu.tanta.fci.reoil.user.registration.RegistrationController o-- edu.tanta.fci.reoil.user.registration.RegistrationService : registrationService
+  edu.tanta.fci.reoil.user.registration.RegistrationService o-- edu.tanta.fci.reoil.user.UserService : userService
+  edu.tanta.fci.reoil.user.registration.RegistrationService o-- edu.tanta.fci.reoil.user.registration.VerificationService : verificationService
+  edu.tanta.fci.reoil.user.registration.VerificationService o-- edu.tanta.fci.reoil.user.registration.VerificationCodeRepository : repository
+  edu.tanta.fci.reoil.user.registration.events.UserRegistrationEvent -up-|> org.springframework.context.ApplicationEvent
+  edu.tanta.fci.reoil.user.registration.events.UserRegistrationEvent o-- edu.tanta.fci.reoil.user.entities.User : user
+  edu.tanta.fci.reoil.user.registration.listeners.EmailVerificationListener .up.|> org.springframework.context.ApplicationListener
+  edu.tanta.fci.reoil.user.registration.listeners.EmailVerificationListener o-- edu.tanta.fci.reoil.user.registration.VerificationService : verificationService
+  edu.tanta.fci.reoil.user.validation.PasswordConfirmedValidator .up.|> jakarta.validation.ConstraintValidator
+  edu.tanta.fci.reoil.user.validation.PasswordPolicyValidator .up.|> jakarta.validation.ConstraintValidator
+  edu.tanta.fci.reoil.user.validation.UniqueEmailValidator .up.|> jakarta.validation.ConstraintValidator
+  edu.tanta.fci.reoil.user.validation.UniqueEmailValidator o-- edu.tanta.fci.reoil.repositories.UserRepository : repository
+  edu.tanta.fci.reoil.user.validation.UniqueUsernameValidator .up.|> jakarta.validation.ConstraintValidator
+  edu.tanta.fci.reoil.user.validation.UniqueUsernameValidator o-- edu.tanta.fci.reoil.repositories.UserRepository : repository
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

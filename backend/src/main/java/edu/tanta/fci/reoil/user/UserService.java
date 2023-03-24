@@ -1,8 +1,6 @@
 package edu.tanta.fci.reoil.user;
 
-import edu.tanta.fci.reoil.exceptions.EmailIsAlreadyExist;
-import edu.tanta.fci.reoil.exceptions.NewPasswordEqualOldPasswordException;
-import edu.tanta.fci.reoil.exceptions.WrongPasswordException;
+import edu.tanta.fci.reoil.exceptions.*;
 import edu.tanta.fci.reoil.password.model.ChangePassword;
 import edu.tanta.fci.reoil.repositories.AddressRepository;
 import edu.tanta.fci.reoil.repositories.RoleRepository;
@@ -73,6 +71,8 @@ public class UserService implements UserDetailsService {
   }
 
   public User createUser(User user) {
+    // TODO: points
+    user.setPoints(100L);
     user.addRole(roleRepository.findByName("ROLE_USER").get());
     return userRepository.save(user);
   }
@@ -154,6 +154,14 @@ public class UserService implements UserDetailsService {
     return ResponseEntity.notFound().build();
   }
 
+  public void usePoints(User user, Long points) {
+    if (user.getPoints() < points) {
+      throw new NotEnoughPointException();
+    }
+    user.setPoints(user.getPoints() - points);
+    user.setUsedPoints(user.getUsedPoints() + points);
+    userRepository.save(user);
+  }
   private Address toAddress(NewAddress address) {
     return new Address(
         address.title(),

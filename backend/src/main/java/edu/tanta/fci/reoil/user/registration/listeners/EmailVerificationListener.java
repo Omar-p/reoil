@@ -36,7 +36,7 @@ public class EmailVerificationListener implements ApplicationListener<UserRegist
     String email = event.getUser().getEmail();
     SimpleMailMessage message = new SimpleMailMessage();
     message.setSubject("Reoil Account Verification");
-    message.setText("Account activation link: \r\n"+ url + "/api/v1/registration?token= " +  verificationId);
+    message.setText("Account activation link: \r\n"+ url + "/api/v1/registration?token=" +  verificationId);
     message.setTo(email);
     mailSender.send(message);
   }
