@@ -29,3 +29,20 @@ include::{snippets}/registration-verify/http-response.adoc[]
 Request Fields
 include::{snippets}/registration/request-fields.adoc[]
 
+'''
+
+'''
+
+Charities
+
+.request
+include::{snippets}/charities/http-request.adoc[]
+
+.response
+include::{snippets}/charities/http-response.adoc[]
+
+.request
+include::{snippets}/specificCharity/http-request.adoc[]
+
+.response
+include::{snippets}/specificCharity/http-response.adoc[]

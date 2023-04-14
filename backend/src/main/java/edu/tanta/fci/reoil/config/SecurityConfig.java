@@ -31,9 +31,10 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
   private final RsaKeyProperties rsaKeys;
-
-  public SecurityConfig(RsaKeyProperties rsaKeys) {
+  private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+  public SecurityConfig(RsaKeyProperties rsaKeys, JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint) {
     this.rsaKeys = rsaKeys;
+    this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
   }
 
   @Bean
@@ -46,12 +47,14 @@ public class SecurityConfig {
     return http
         .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/index.html", "/api/v1/registration?token=**", "/api/v1/registration", "/api/v1/password/reset/code**", "/api/v1/auth", "/swagger-ui/**", "/v3/api-docs/**")
+            .requestMatchers("/favicon.ico", "/index.html", "/api/v1/registration?token=**", "/api/v1/registration", "/api/v1/password/reset/code**", "/api/v1/auth", "/swagger-ui/**", "/v3/api-docs/**")
 
             .permitAll()
             .anyRequest().authenticated()
         )
         .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+        .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+        .and()
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .httpBasic(Customizer.withDefaults())
         .build();

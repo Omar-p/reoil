@@ -99,13 +99,7 @@ class RegistrationControllerTest {
       );
   }
 
-  @Test
-  void itShouldVerify() {
-    // Given
-    // When
 
-    // Then
-  }
 
 
 

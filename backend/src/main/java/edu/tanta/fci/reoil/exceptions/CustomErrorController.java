@@ -3,6 +3,7 @@ package edu.tanta.fci.reoil.exceptions;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -51,6 +52,11 @@ public class CustomErrorController {
 
   @ExceptionHandler(NotEnoughPointException.class)
   ResponseEntity<?> handleNotEnoughPoint(NotEnoughPointException exception){
+    return new ResponseEntity<>(Map.of("message", exception.getMessage()), HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler(UsernameNotFoundException.class)
+  ResponseEntity<?> handleUsernameNotFound(UsernameNotFoundException exception){
     return new ResponseEntity<>(Map.of("message", exception.getMessage()), HttpStatus.BAD_REQUEST);
   }
 }

@@ -2,6 +2,7 @@ package edu.tanta.fci.reoil.domain.security;
 
 import edu.tanta.fci.reoil.user.entities.User;
 import jakarta.persistence.*;
+import lombok.Builder;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,7 +25,7 @@ public class Role {
   private String name;
 
   @ManyToMany(mappedBy = "roles")
-  private Set<User> users;
+  private Set<User> users = new HashSet<>();
 
   @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
   @JoinTable(name = "role_authority",
@@ -69,11 +70,14 @@ public class Role {
     this.authorities.add(authority);
   }
 
-
+  public void addUsers(User user) {
+    this.users.add(user);
+  }
   public static final class Builder {
     private Long id;
     private String name;
     private Set<Authority> authorities;
+
 
     private Builder() {
     }
