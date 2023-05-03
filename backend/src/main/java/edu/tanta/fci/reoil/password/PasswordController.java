@@ -2,6 +2,7 @@ package edu.tanta.fci.reoil.password;
 
 import edu.tanta.fci.reoil.password.model.ChangePassword;
 import edu.tanta.fci.reoil.password.model.ResetPassword;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import jakarta.validation.Valid;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,7 @@ public class PasswordController {
   }
 
   @GetMapping("/reset/code")
+  @SecurityRequirements(value = {})
   public void validateResetPasswordCode(@RequestParam String email) {
     eventPublisher.publishEvent(new ForgetPasswordEvent(email));
   }
