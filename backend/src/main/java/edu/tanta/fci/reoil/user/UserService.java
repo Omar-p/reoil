@@ -51,7 +51,7 @@ public class UserService implements UserDetailsService {
     final User user = findByUsername(username);
 
     if (!passwordEncoder.matches(changePassword.oldPassword(), user.getPassword())) {
-      throw new WrongPasswordException("old password is not correct");
+      throw new InCorrectPasswordException("old password is not correct");
     }
 
     if (passwordEncoder.matches(changePassword.password(), user.getPassword())) {
@@ -99,7 +99,7 @@ public class UserService implements UserDetailsService {
   }
 
   @Transactional
-  void updateProfile(ProfileUpdate profileUpdate, String username) {
+  public void updateProfile(ProfileUpdate profileUpdate, String username) {
     var user = findByUsername(username);
    if (profileUpdate.fullName() != null) {
       user.setFullName(profileUpdate.fullName());
@@ -124,13 +124,13 @@ public class UserService implements UserDetailsService {
   }
 
   @Transactional
-  List<AddressResponse> findAddressesByUsername(String name) {
+  public List<AddressResponse> findAddressesByUsername(String name) {
     var user = findByUsername(name);
     return addressRepository.findByUser(user);
   }
 
   @Transactional
-  void addAddress(NewAddress address, String name) {
+  public void addAddress(NewAddress address, String name) {
     var user = findByUsername(name);
     user.addAddress(toAddress(address));
     userRepository.save(user);
@@ -156,7 +156,7 @@ public class UserService implements UserDetailsService {
 
   public void usePoints(User user, Long points) {
     if (user.getPoints() < points) {
-      throw new NotEnoughPointException();
+      throw new InsufficientPointException();
     }
     user.setPoints(user.getPoints() - points);
     user.setUsedPoints(user.getUsedPoints() + points);

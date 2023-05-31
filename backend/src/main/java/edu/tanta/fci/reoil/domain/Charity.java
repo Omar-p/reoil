@@ -49,11 +49,11 @@ public class Charity {
   @OneToMany(mappedBy = "charity", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Program> programs = new ArrayList<>();
 
-  public Charity(String name, String description, String about, String email, String phone) {
+  public Charity(String name, String description, String about, String site, String phone) {
     this.name = name;
     this.description = description;
     this.about = about;
-    this.site = email;
+    this.site = site;
     this.phone = phone;
   }
 

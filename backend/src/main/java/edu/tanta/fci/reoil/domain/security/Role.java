@@ -3,11 +3,14 @@ package edu.tanta.fci.reoil.domain.security;
 import edu.tanta.fci.reoil.user.entities.User;
 import jakarta.persistence.*;
 import lombok.Builder;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(name = "role_name_key", columnNames = {"name"}))
 public class Role {
   @SequenceGenerator(
       name = "role_id_generator",
@@ -58,7 +61,9 @@ public class Role {
     this.users = users;
   }
 
-  public Set<Authority> getAuthorities() {
+  public Set<? extends GrantedAuthority> getAuthorities() {
+    Set<GrantedAuthority> authorities = new HashSet<>(this.authorities);
+    authorities.add(new SimpleGrantedAuthority(this.name.substring(5)));
     return authorities;
   }
 

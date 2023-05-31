@@ -1,4 +1,4 @@
-# Reoil
+= Reoil
 
 Registration
 
@@ -46,3 +46,31 @@ include::{snippets}/specificCharity/http-request.adoc[]
 
 .response
 include::{snippets}/specificCharity/http-response.adoc[]
+
+'''
+ADMIN
+
+.request
+include::{snippets}/addNewCharity/http-request.adoc[]
+
+.response
+include::{snippets}/addNewCharity/http-response.adoc[]
+
+
+'''
+
+.request
+include::{snippets}/addNewCharityAsUser/http-request.adoc[]
+
+.response
+include::{snippets}/addNewCharityAsUser/http-response.adoc[]
+
+'''
+without token
+
+.request
+include::{snippets}/addNewCharity401/http-request.adoc[]
+
+.response
+include::{snippets}/addNewCharity401/http-response.adoc[]
+

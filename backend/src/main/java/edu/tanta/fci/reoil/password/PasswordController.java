@@ -11,6 +11,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/v1/password")
 public class PasswordController {
@@ -40,15 +42,15 @@ public class PasswordController {
   }
 
   @PostMapping("/reset")
-  @PreAuthorize("hasAuthority('password:reset')")
+  @PreAuthorize("hasAuthority('SCOPE_password:reset')")
   public ResponseEntity<?> resetPassword(Authentication authentication, @Valid @RequestBody ResetPassword resetPassword) {
     passwordService.resetPassword(authentication, resetPassword);
-    return ResponseEntity.ok().build();
+    return ResponseEntity.ok().body(Map.of("message", "Password reset successfully"));
   }
 
   @PostMapping("/change")
   public ResponseEntity<?> changePassword(Authentication authentication, @Valid @RequestBody ChangePassword changePassword) {
     passwordService.changePassword(authentication.getName(), changePassword);
-    return ResponseEntity.ok().build();
+    return ResponseEntity.ok().body(Map.of("state", "success"));
   }
 }

@@ -1,5 +1,7 @@
 package edu.tanta.fci.reoil.controller;
 
+import edu.tanta.fci.reoil.config.JwtDelegatedAuthenticationEntryPoint;
+import edu.tanta.fci.reoil.config.SecurityConfig;
 import edu.tanta.fci.reoil.model.Charity;
 import edu.tanta.fci.reoil.model.SelectedCharity;
 import edu.tanta.fci.reoil.service.CharityService;
@@ -9,9 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.restdocs.headers.HeaderDocumentation;
+import org.springframework.context.annotation.Import;
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
@@ -21,6 +24,7 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 
 @AutoConfigureRestDocs
 @WebMvcTest(CharityController.class)
+@Import({SecurityConfig.class, JwtDelegatedAuthenticationEntryPoint.class})
 class CharityControllerTest {
 
 
@@ -30,12 +34,16 @@ class CharityControllerTest {
   @Autowired
   MockMvc mvc;
 
+  @MockBean
+  AuthenticationManager authenticationManager;
+
+
+
   @Test
   void itShouldReturnCharities() throws Exception {
     BDDMockito.when(charityService.getCharities()).thenReturn(List.of(new Charity(1L, "مؤسسة مجدى يعقوب للقلب", "مؤسسة خيرية", 0L)));
     mvc
         .perform(RestDocumentationRequestBuilders.get("/api/v1/charities")
-            .header("Authorization", "Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoib21hciIsImV4cCI6MTY3OTcyMTY0MSwiaWF0IjoxNjc5NzE4MDQxLCJzY29wZSI6InVzZXIuaW5mby5yZWFkIn0.0If6Qo5ZAMcq4TXnkEkNgpzHP60NEoTqUSV6Di1IgQ8eVR7Illu27ppvBBXGImw5_3oWXcT89XWH6sGEbyyg5wcxXBh_yLX-n4bi4xE5_MgSGZDqBfAGepZLczD7LzqbEpAC74Tajj05F2utI6TZkzviy8YDa60rE2IlWQoaR9pfwnhVJjsNnPW_T82cJyjT5hmVzZ7CScy5ZtSSL4QgslPy0IWixTRPna5GhA2GIMc_nfPuo7ePw6ggxXk1GSXliV5RPRp40EUpMBBxDWP362LSr5GSREWw2dF7QiPlfhH-uq46e5vQQZ8M28wjZYIOYpsW7ntaOBnNp9hx0suYNQ")
             .with(jwt().jwt((jwt) -> jwt.claim("scope", "USER"))))
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(MockMvcResultMatchers.content().json(
@@ -49,7 +57,7 @@ class CharityControllerTest {
                   }
                 ]
                 """
-        )).andDo(MockMvcRestDocumentation.document("charities", HeaderDocumentation.requestHeaders(HeaderDocumentation.headerWithName("Authorization").description("JWT token"))));
+        )).andDo(MockMvcRestDocumentation.document("charities"));
   }
 
   @Test
@@ -72,7 +80,6 @@ class CharityControllerTest {
     );
     mvc
         .perform(RestDocumentationRequestBuilders.get("/api/v1/charities/{id}", 1)
-            .header("Authorization", "Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoib21hciIsImV4cCI6MTY3OTcyMTY0MSwiaWF0IjoxNjc5NzE4MDQxLCJzY29wZSI6InVzZXIuaW5mby5yZWFkIn0.0If6Qo5ZAMcq4TXnkEkNgpzHP60NEoTqUSV6Di1IgQ8eVR7Illu27ppvBBXGImw5_3oWXcT89XWH6sGEbyyg5wcxXBh_yLX-n4bi4xE5_MgSGZDqBfAGepZLczD7LzqbEpAC74Tajj05F2utI6TZkzviy8YDa60rE2IlWQoaR9pfwnhVJjsNnPW_T82cJyjT5hmVzZ7CScy5ZtSSL4QgslPy0IWixTRPna5GhA2GIMc_nfPuo7ePw6ggxXk1GSXliV5RPRp40EUpMBBxDWP362LSr5GSREWw2dF7QiPlfhH-uq46e5vQQZ8M28wjZYIOYpsW7ntaOBnNp9hx0suYNQ")
             .with(jwt().jwt((jwt) -> jwt.claim("scope", "USER"))))
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(MockMvcResultMatchers.content().json(
@@ -92,7 +99,7 @@ class CharityControllerTest {
                   ]
                 }
                 """
-        )).andDo(MockMvcRestDocumentation.document("specificCharity", HeaderDocumentation.requestHeaders(HeaderDocumentation.headerWithName("Authorization").description("JWT token"))));
+        )).andDo(MockMvcRestDocumentation.document("specificCharity"));
   }
 
 }

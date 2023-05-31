@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(name ="program_name_charity_id_key", columnNames = {"name", "charity_id"}))
 @NoArgsConstructor
 @Getter
 @Setter
@@ -26,6 +27,7 @@ public class Program {
   private String name;
 
   @ManyToOne
+  @JoinColumn(name = "charity_id")
   private Charity charity;
 
 

@@ -12,8 +12,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -27,14 +27,14 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
   private final RsaKeyProperties rsaKeys;
-  private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-  public SecurityConfig(RsaKeyProperties rsaKeys, JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint) {
+  private final JwtDelegatedAuthenticationEntryPoint jwtDelegatedAuthenticationEntryPoint;
+  public SecurityConfig(RsaKeyProperties rsaKeys, JwtDelegatedAuthenticationEntryPoint jwtDelegatedAuthenticationEntryPoint) {
     this.rsaKeys = rsaKeys;
-    this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
+    this.jwtDelegatedAuthenticationEntryPoint = jwtDelegatedAuthenticationEntryPoint;
   }
 
   @Bean
@@ -53,7 +53,7 @@ public class SecurityConfig {
             .anyRequest().authenticated()
         )
         .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
-        .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+        .exceptionHandling().authenticationEntryPoint(jwtDelegatedAuthenticationEntryPoint)
         .and()
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .httpBasic(Customizer.withDefaults())

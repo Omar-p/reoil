@@ -1,10 +1,10 @@
 services:
   app:
-    image: ghcr.io/omar-p/reoil:v3
+    image: omar077/reoil:27.05.2023.16.31.52
     container_name: reoil
-    restart: unless-stopped
+    restart: always
     ports:
-      - 8081:8080
+      - 80:8080
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/reoil
       - APP_URL=http://localhost
@@ -23,5 +23,6 @@ services:
       - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --locale=C
     volumes:
       - postgres:/var/lib/postgresql/data
+    restart: always
 volumes:
   postgres:

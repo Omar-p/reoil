@@ -70,7 +70,7 @@ create table verification (
 );
 
 alter table if exists role
-    add constraint UK_8sewwnpamngi6b1dwaa88askk unique (name);
+    add constraint role_name_key unique (name);
 
 alter table if exists users
     add constraint users_email_key unique (email);
