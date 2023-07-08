@@ -32,15 +32,46 @@ public class DataLoader {
         var item = new Item();
         item.setPoints(100L);
         item.setName("زيت طعام");
-        item.setQuantity(1.5);
+        item.setQuantity(1.0);
         item.setUnit("لتر");
         item.setImageUrl("https://post.healthline.com/wp-content/uploads/2020/08/AN168-oil-frying-pan-732x549-Thumb-1-732x549.jpg");
         catalogRepository.save(item);
+
+        var item2 = new Item();
+        item2.setPoints(200L);
+        item2.setName("زيت سيارات");
+        item2.setQuantity(1.0);
+        item2.setUnit("لتر");
+        item2.setImageUrl("https://gate.ahram.org.eg/Media/News/2017/11/26/19_2017-636472915307382752-738.jpg");
+        catalogRepository.save(item2);
       }
+
+      if (catalogRepository.count() == 2) {
+        var item = new Item();
+        item.setPoints(600L);
+        item.setName("زيت طعام 5 لتر");
+        item.setQuantity(1.0);
+        item.setUnit("لتر");
+        item.setImageUrl("https://post.healthline.com/wp-content/uploads/2020/08/AN168-oil-frying-pan-732x549-Thumb-1-732x549.jpg");
+        catalogRepository.save(item);
+
+        var item2 = new Item();
+        item2.setPoints(700L);
+        item2.setName("زيت سيارات 3لتر");
+        item2.setQuantity(1.0);
+        item2.setUnit("لتر");
+        item2.setImageUrl("https://gate.ahram.org.eg/Media/News/2017/11/26/19_2017-636472915307382752-738.jpg");
+        catalogRepository.save(item2);
+      }
+
 
       if (roleRepository.count() == 0) {
         final Authority userRead = Authority.Builder.anAuthority()
             .withPermission("user.info.read")
+            .build();
+
+        final Authority userAddressesRead = Authority.Builder.anAuthority()
+            .withPermission("user.addresses.read")
             .build();
 
         final Role userRole = Role.Builder.aRole()
@@ -63,6 +94,13 @@ public class DataLoader {
             .authorities(Set.of(charityWrite, charityRead))
             .name("ROLE_ADMIN")
             .build();
+
+        final Role workerRole = Role.Builder.aRole()
+            .authorities(Set.of(userAddressesRead))
+            .name("ROLE_WORKER")
+            .build();
+
+        roleRepository.save(workerRole);
 
 
         roleRepository.save(adminRole);

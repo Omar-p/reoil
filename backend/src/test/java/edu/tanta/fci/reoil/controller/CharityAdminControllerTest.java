@@ -1,6 +1,7 @@
 package edu.tanta.fci.reoil.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.tanta.fci.reoil.admin.CharityAdminController;
 import edu.tanta.fci.reoil.config.JwtDelegatedAuthenticationEntryPoint;
 import edu.tanta.fci.reoil.config.SecurityConfig;
 import edu.tanta.fci.reoil.model.NewCharity;

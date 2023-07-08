@@ -18,7 +18,7 @@ public class OrderLine {
   )
   @SequenceGenerator(name = "order_line_id_generator", sequenceName = "order_line_id_seq")
   private Long id;
-  @OneToOne
+  @OneToOne(fetch = FetchType.EAGER)
   private Item item;
 
   private Long quantity;

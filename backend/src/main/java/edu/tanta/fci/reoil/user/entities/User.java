@@ -48,6 +48,8 @@ public class User implements UserDetails {
 
   private String phoneNumber;
 
+  private String imageId;
+
   private long points;
 
   private long usedPoints;
@@ -74,6 +76,7 @@ public class User implements UserDetails {
 
   public User(String username, String email, String password, String phoneNumber, boolean enabled) {
     this.username = username;
+    this.fullName = username;
     this.email = email;
     this.password = password;
     this.phoneNumber = phoneNumber;

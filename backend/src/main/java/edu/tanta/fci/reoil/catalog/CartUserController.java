@@ -30,7 +30,7 @@ public class CartUserController {
   }
 
   @DeleteMapping("/orderlines/{id}")
-  public ResponseEntity<?> removeOrderLine(Authentication authentication, Long id) {
+  public ResponseEntity<?> removeOrderLine(Authentication authentication, @PathVariable("id") Long id) {
     cartUserService.removeOrderLine(id, authentication.getName());
     return ResponseEntity.ok().build();
   }

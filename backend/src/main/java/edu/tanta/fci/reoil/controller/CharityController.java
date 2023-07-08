@@ -28,4 +28,5 @@ public class CharityController {
     return charityService.getCharity(id);
 
   }
+  
 }

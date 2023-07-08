@@ -4,6 +4,7 @@ import edu.tanta.fci.reoil.domain.Charity;
 import edu.tanta.fci.reoil.domain.Donation;
 import edu.tanta.fci.reoil.domain.Program;
 import edu.tanta.fci.reoil.exceptions.NotFoundException;
+import edu.tanta.fci.reoil.model.DonationDTO;
 import edu.tanta.fci.reoil.model.DonationRequest;
 import edu.tanta.fci.reoil.repositories.CharityRepository;
 import edu.tanta.fci.reoil.repositories.DonationRepository;
@@ -13,6 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -37,6 +41,11 @@ public class DonationService {
     userService.usePoints(user, donationRequest.points());
 
     donationRepository.save(new Donation(user, charity, program, donationRequest.points()));
+  }
+
+  public List<DonationDTO> getUserDonation(Authentication authentication) {
+    final User user = userService.findByUsername(authentication.getName());
+    return donationRepository.findByUser(user);
   }
 
 }

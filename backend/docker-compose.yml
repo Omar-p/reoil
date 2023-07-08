@@ -1,13 +1,13 @@
 services:
   app:
-    image: omar077/reoil:27.05.2023.16.31.52
+    image: omar077/reoil:01.07.2023.00.31.14
     container_name: reoil
     restart: always
     ports:
-      - 80:8080
+      - 8080:8080
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/reoil
-      - APP_URL=http://localhost
+      - APP_URL=http://reoil.us-east-1.elasticbeanstalk.com
       - DISABLE_EMAIL_VERIFICATION=true
     depends_on:
       - postgres

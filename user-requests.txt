@@ -1,0 +1,194 @@
+--user-registration-request--
+
+POST http://localhost:8080/api/v1/registration
+Content-Type: application/json
+
+{
+  "username": "omar.shabaan",
+  "email": "omar.plus.077@gmail.com",
+  "password":  "12345678",
+  "passwordConfirmation": "12345678",
+  "phoneNumber": "1234567890"
+
+}
+
+response:
+HTTP/1.1 201
+Content-Length: 0
+
+--------------------------------------------------------
+---request-get-products/items------
+GET http://localhost:8080/api/v1/catalog/items
+Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoib21hci5zaGFiYWFuIiwiZXhwIjoxNjk2OTQzNzU2LCJpYXQiOjE2ODgzMDM3NTYsInNjb3BlIjoiVVNFUiB1c2VyLmluZm8ucmVhZCJ9.DnjzTjlc0LeZ7SzyffJktsTmGp7ycLmKyWr2CIh3vAOmUc8_emKWyMYQg9DbBHujbleB3dlLsYVDtqEY0csXXYDJMk6Z-yqKgIrEX3SFBRbaGqigsOcoDFcM5z4wDLipabrYfXtdypCG6o8GAW1_wrB9_uQQjSB4PybnMqvZlcQuJEpOAw2APjVBs8SIBqFHNys4dSU8zIG9F4e1NKZ0PdRAqdHBfUkOkiQb1h-pyY-5F10gITi960K-XW1jhVGSYBiB1yaj70PsMlrJ0bsKE1NSFTsFmL5KCBN1gir5XucY1TLhnPpv5Ws_9QFJunMYCGhYxSpqux-jngDwSi0Eqg
+
+response:
+HTTP/1.1 200
+Content-Type: application/json
+
+[
+  {
+    "id": 1,
+    "name": "زيت طعام",
+    "imageUrl": "https://post.healthline.com/wp-content/uploads/2020/08/AN168-oil-frying-pan-732x549-Thumb-1-732x549.jpg",
+    "quantity": 1.5,
+    "points": 100,
+    "unit": "لتر"
+  }
+]
+--------------------------------------------------------
+---select-one-item-to-the-cart--
+POST http://localhost:8080/api/v1/cart/items/{1} <-- id retrieved from the previous response
+Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoib21hci5zaGFiYWFuIiwiZXhwIjoxNjk2OTQxMTAzLCJpYXQiOjE2ODgzMDExMDMsInNjb3BlIjoidXNlci5pbmZvLnJlYWQgVVNFUiJ9.DOPEIZWROYqKazd6jQiqN647aveMNQus3Xv7WvECWj4W6bmXw195TYbPwhISbAU-0LSxCRIJTrt3xH0w_lJDO88yvnn3-iWkJ2SLuWinDvYjjJteRFUjhgj6V0ZskB8uwHlO6h8We_g6ten_UpB9hywmwaR6zguyBzbNYgxrjQ03lFeXDYOwvjSCWz4AhZdxPxfK56KBjylSSaEDhgC7aWyUvwtOF_UOy7Nb_h53vKqrF1bgx5WviF7pHzrKqmCxy2CtyTXmOguhmF3YG0Q1LK5nFmbneFg0FXurF_8c5EXXBneLGEOXG59wRmZ5jA7UAZd96_Pc0EX_sszoXhOBSQ
+
+
+---request--get-cart-items--
+GET http://localhost:8080/api/v1/catalog/items
+Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoib21hci5zaGFiYWFuIiwiZXhwIjoxNjk2OTQzNzU2LCJpYXQiOjE2ODgzMDM3NTYsInNjb3BlIjoiVVNFUiB1c2VyLmluZm8ucmVhZCJ9.DnjzTjlc0LeZ7SzyffJktsTmGp7ycLmKyWr2CIh3vAOmUc8_emKWyMYQg9DbBHujbleB3dlLsYVDtqEY0csXXYDJMk6Z-yqKgIrEX3SFBRbaGqigsOcoDFcM5z4wDLipabrYfXtdypCG6o8GAW1_wrB9_uQQjSB4PybnMqvZlcQuJEpOAw2APjVBs8SIBqFHNys4dSU8zIG9F4e1NKZ0PdRAqdHBfUkOkiQb1h-pyY-5F10gITi960K-XW1jhVGSYBiB1yaj70PsMlrJ0bsKE1NSFTsFmL5KCBN1gir5XucY1TLhnPpv5Ws_9QFJunMYCGhYxSpqux-jngDwSi0Eqg
+
+
+--increase-item-quantity--
+POST http://localhost:8080/api/v1/cart/orderlines/{1}/increase
+Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoib21hcjEiLCJleHAiOjE2OTM4MzE1MzcsImlhdCI6MTY4NTE5MTUzNywic2NvcGUiOiJ1c2VyLmluZm8ucmVhZCBVU0VSIn0.CfveSjoPfgQfVTlCkQkND_WYZZlWH0qS2kuopgFgwanjh_ExpIoVFUnx9RuiOGG2wei7EL3EBxXkBmOmmgwn7f5P-3Bfy2KYrAnPwvFKb7H2w2OLouGjX9OK1Ck71__na0Uh1mNc2c_LoARK8BJLOgCS4Bma5umN2ei3Ql9WQAKdPmHa2_Cw7qBmN0hh9rHpCkOMtBGFRIXXTUEXcbhjtcqiyd9WGRmM_I63inM6Oki22GzfqgV6-_8fhthQW2tVLDArwrndd-FwtymsZuBpaIL8YY1MlX4AvY3njf_MdZcT6jorqn2k-_QhSn8GghE3h-L3vY_wtejYXYAp6W63kw
+
+
+---decerease-item-quantity--
+POST http://localhost:8080/api/v1/cart/orderlines/1/decrease
+Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoib21hcjEiLCJleHAiOjE2OTM4MzE1MzcsImlhdCI6MTY4NTE5MTUzNywic2NvcGUiOiJ1c2VyLmluZm8ucmVhZCBVU0VSIn0.CfveSjoPfgQfVTlCkQkND_WYZZlWH0qS2kuopgFgwanjh_ExpIoVFUnx9RuiOGG2wei7EL3EBxXkBmOmmgwn7f5P-3Bfy2KYrAnPwvFKb7H2w2OLouGjX9OK1Ck71__na0Uh1mNc2c_LoARK8BJLOgCS4Bma5umN2ei3Ql9WQAKdPmHa2_Cw7qBmN0hh9rHpCkOMtBGFRIXXTUEXcbhjtcqiyd9WGRmM_I63inM6Oki22GzfqgV6-_8fhthQW2tVLDArwrndd-FwtymsZuBpaIL8YY1MlX4AvY3njf_MdZcT6jorqn2k-_QhSn8GghE3h-L3vY_wtejYXYAp6W63kw
+
+
+----------------------------------
+--submit-cart--
+POST http://localhost:8080/api/v1/cart/submit
+Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoib21hci5zaGFiYWFuIiwiZXhwIjoxNjk2OTQxMTAzLCJpYXQiOjE2ODgzMDExMDMsInNjb3BlIjoidXNlci5pbmZvLnJlYWQgVVNFUiJ9.DOPEIZWROYqKazd6jQiqN647aveMNQus3Xv7WvECWj4W6bmXw195TYbPwhISbAU-0LSxCRIJTrt3xH0w_lJDO88yvnn3-iWkJ2SLuWinDvYjjJteRFUjhgj6V0ZskB8uwHlO6h8We_g6ten_UpB9hywmwaR6zguyBzbNYgxrjQ03lFeXDYOwvjSCWz4AhZdxPxfK56KBjylSSaEDhgC7aWyUvwtOF_UOy7Nb_h53vKqrF1bgx5WviF7pHzrKqmCxy2CtyTXmOguhmF3YG0Q1LK5nFmbneFg0FXurF_8c5EXXBneLGEOXG59wRmZ5jA7UAZd96_Pc0EX_sszoXhOBSQ
+
+response:
+HTTP/1.1 201
+Location: api/v1/orders/f1a92c4f-7d3c-465d-8865-a384105816a9
+Content-Type: application/json
+
+
+{
+  "orderLines": [
+    {
+      "id": 1,
+      "item": {
+        "id": 1,
+        "name": "زيت طعام",
+        "imageUrl": "https://post.healthline.com/wp-content/uploads/2020/08/AN168-oil-frying-pan-732x549-Thumb-1-732x549.jpg",
+        "quantity": 1.5,
+        "points": 100,
+        "unit": "لتر"
+      },
+      "quantity": 1
+    }
+  ],
+  "orderStatus": "PENDING",
+  "createdAt": "2023-07-03T12:31:05.708277064",
+  "trackingNumber": "f1a92c4f-7d3c-465d-8865-a384105816a9"
+}
+
+----
+--get-order-order-details[retrieved from Location header in previous response]--
+GET http://localhost:8080/api/v1/orders/f1a92c4f-7d3c-465d-8865-a384105816a9
+Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoib21hcjEiLCJleHAiOjE2OTM4MzE1MzcsImlhdCI6MTY4NTE5MTUzNywic2NvcGUiOiJ1c2VyLmluZm8ucmVhZCBVU0VSIn0.CfveSjoPfgQfVTlCkQkND_WYZZlWH0qS2kuopgFgwanjh_ExpIoVFUnx9RuiOGG2wei7EL3EBxXkBmOmmgwn7f5P-3Bfy2KYrAnPwvFKb7H2w2OLouGjX9OK1Ck71__na0Uh1mNc2c_LoARK8BJLOgCS4Bma5umN2ei3Ql9WQAKdPmHa2_Cw7qBmN0hh9rHpCkOMtBGFRIXXTUEXcbhjtcqiyd9WGRmM_I63inM6Oki22GzfqgV6-_8fhthQW2tVLDArwrndd-FwtymsZuBpaIL8YY1MlX4AvY3njf_MdZcT6jorqn2k-_QhSn8GghE3h-L3vY_wtejYXYAp6W63kw
+
+
+response:
+
+HTTP/1.1 200
+Content-Type: application/json
+
+{
+  "orderLines": [
+    {
+      "id": 1,
+      "item": {
+        "id": 1,
+        "name": "زيت طعام",
+        "imageUrl": "https://post.healthline.com/wp-content/uploads/2020/08/AN168-oil-frying-pan-732x549-Thumb-1-732x549.jpg",
+        "quantity": 1.5,
+        "points": 100,
+        "unit": "لتر"
+      },
+      "quantity": 1
+    }
+  ],
+  "orderStatus": "PENDING",
+  "createdAt": "2023-07-03T12:31:05.708277",
+  "trackingNumber": "f1a92c4f-7d3c-465d-8865-a384105816a9"
+}
+
+------------------------------------------------------------------
+adding profile-image
+POST http://localhost:8080/api/v1/user/profile-image
+Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoi2KPZhdmK2LEg2LfYp9ix2YIiLCJleHAiOjE2OTY0NjA3NTgsImlhdCI6MTY4NzgyMDc1OCwic2NvcGUiOiJ1c2VyLmluZm8ucmVhZCBVU0VSIn0.GVxaMxhRI28E033-tQjJWS-I5s-7Sg52mU7-O989PiZhGfDm9KMg0au7C6iHWL2V4lqeFHqBghbpghPsIVOjBs8p0rRJNtGnEClRi1sozZs8Nm9M1V-Q6ZnWfIZu6nhBPLPOXuWRVlDzLWJ2WjrQxZlQInu1pKnRb8V0cmBGJ7HOZu_7FUusCPuEfakGfS3xtNo79NPXgmwWj2a8ky_WzOYvPNsLSd2BgpcG-hliglerxJYQhNbKqoNh8qCksbXKZ4pj_cGckqQBthrEV4-mLHdv5ZA0m7-AQbP3zN1Nz0O66J6DONSSfEIVV3UvltMOBLA5AN7a70FAvVH-1CCjjQ
+Content-Type: multipart/form-data; boundary="boundary"
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="images.jpeg"
+
+< /home/omar/images.jpeg
+--boundary
+Content-Disposition: form-data; name="advertType"
+
+response:
+HTTP/1.1 200
+Content-Type: application/json
+
+{
+  "profileImageUri": "https://reoil-graduation-project.s3.us-east-1.amazonaws.com/profile-image/3/a69279d0-b3e8-48e3-94fa-2dd5dc9da0cb"
+}
+
+----------
+--get-user-info--
+GET http://localhost:8080/api/v1/user
+Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoib21hci5zaGFiYWFuIiwiZXhwIjoxNjk3MDIwNjk4LCJpYXQiOjE2ODgzODA2OTgsInNjb3BlIjoiVVNFUiB1c2VyLmluZm8ucmVhZCJ9.VJ-2hTk117-2VHLA-AhwCKMtWfcQxBQgTw90XXcWN3JhfoYzzC3zHgjpdCAnUgwZWDf69JQ3pIlUIEnBVTi3OiY7AXUHfiWSiS3FkwKVVSnXsjZGrktPwwDuM1QCJSXKI7cwPROTYeq2W58X-80cC_dKXKPXSwOafyuFiw-5ECkhA_nFNuYo0-3uZ01fheSb4xzfg9VeetCTwjy-Cg5kWUpRAXQyyb-DcNgkKK1aBVojuszAbMiWo5FqlbMLkeMIDKgcXEFf0GgUWPIptOgW5bcOkjg77U87U66LW-SeWF_xoc-F0H53y1x_nHptanCmlbKU_BoRX12Pp_of4bUGgA
+response:
+HTTP/1.1 200
+Content-Type: application/json
+
+
+{
+  "fullName": "omar.shabaan",
+  "email": "omar.plus.077@gmail.com",
+  "phoneNumber": "1234567890",
+  "points": 1000,
+  "usedPoints": 0,
+  "imageUri": "https://reoil-graduation-project.s3.us-east-1.amazonaws.com/profile-image/3/a69279d0-b3e8-48e3-94fa-2dd5dc9da0cb"
+}
+
+-----------------
+
+---------------------------------
+user-get-orders
+GET http://localhost:8080/api/v1/orders
+Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoib21hcjEiLCJleHAiOjE2OTM4MzE1MzcsImlhdCI6MTY4NTE5MTUzNywic2NvcGUiOiJ1c2VyLmluZm8ucmVhZCBVU0VSIn0.CfveSjoPfgQfVTlCkQkND_WYZZlWH0qS2kuopgFgwanjh_ExpIoVFUnx9RuiOGG2wei7EL3EBxXkBmOmmgwn7f5P-3Bfy2KYrAnPwvFKb7H2w2OLouGjX9OK1Ck71__na0Uh1mNc2c_LoARK8BJLOgCS4Bma5umN2ei3Ql9WQAKdPmHa2_Cw7qBmN0hh9rHpCkOMtBGFRIXXTUEXcbhjtcqiyd9WGRmM_I63inM6Oki22GzfqgV6-_8fhthQW2tVLDArwrndd-FwtymsZuBpaIL8YY1MlX4AvY3njf_MdZcT6jorqn2k-_QhSn8GghE3h-L3vY_wtejYXYAp6W63kw
+
+response:
+HTTP/1.1 200
+Content-Type: application/json
+
+
+[
+  {
+    "orderLines": [
+      {
+        "id": 1,
+        "item": {
+          "id": 1,
+          "name": "زيت طعام",
+          "imageUrl": "https://post.healthline.com/wp-content/uploads/2020/08/AN168-oil-frying-pan-732x549-Thumb-1-732x549.jpg",
+          "quantity": 1.5,
+          "points": 100,
+          "unit": "لتر"
+        },
+        "quantity": 1
+      }
+    ],
+    "orderStatus": "PENDING",
+    "createdAt": "2023-07-03T12:31:05.708277",
+    "trackingNumber": "f1a92c4f-7d3c-465d-8865-a384105816a9"
+  }
+]
+
+

@@ -5,6 +5,7 @@ import edu.tanta.fci.reoil.user.model.Profile;
 import edu.tanta.fci.reoil.user.model.ProfileUpdate;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/user")
 @RestController
+@Slf4j
 public class UserController {
 
   private final UserService userService;
@@ -23,7 +25,9 @@ public class UserController {
 
   @GetMapping
   public ResponseEntity<Profile> getProfile(Authentication authentication) {
-    return ResponseEntity.ok(userService.findProfileByUsername(authentication.getName()));
+    final Profile profileByUsername = userService.findProfileByUsername(authentication.getName());
+    log.info("Get profile {}", profileByUsername);
+    return ResponseEntity.ok(profileByUsername);
   }
 
   @GetMapping("addresses")

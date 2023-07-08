@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Formula;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,7 @@ public class Charity {
   @SequenceGenerator(
       name = "charity_id_generator",
       allocationSize = 1,
-      sequenceName = "charity_id_sequence"
+      sequenceName = "charity_id_seq"
   )
   @GeneratedValue(
       strategy = GenerationType.SEQUENCE,
@@ -39,8 +38,9 @@ public class Charity {
 
   private String phone;
 
-  // TODO: count user only once
-  @Formula("(SELECT COUNT(d.id) FROM donation d WHERE d.charity_id = id)")
+  private String imageUriId;
+
+  @Formula("(SELECT count(distinct d.user_id)  FROM donation d WHERE d.charity_id = id GROUP BY d.charity_id)")
   private Long numberOfDonors;
 
   @Formula("(SELECT SUM(d.amount) FROM donation d WHERE d.charity_id = id)")

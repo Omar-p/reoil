@@ -72,7 +72,7 @@ public class UserService implements UserDetailsService {
 
   public User createUser(User user) {
     // TODO: points
-    user.setPoints(100L);
+    user.setPoints(1000L);
     user.addRole(roleRepository.findByName("ROLE_USER").get());
     return userRepository.save(user);
   }

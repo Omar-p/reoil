@@ -3,6 +3,7 @@ create sequence authority_id_seq start with 1 increment by 1;
 create sequence reset_password_codes_seq start with 1 increment by 1;
 create sequence role_id_seq start with 1 increment by 1;
 create sequence users_id_seq start with 1 increment by 1;
+create sequence charity_id_seq start with 1 increment by 1;
 
 create table address (
                          id bigint not null,
@@ -13,6 +14,19 @@ create table address (
                          title varchar(255),
                          version integer not null,
                          user_id bigint,
+                         primary key (id)
+);
+
+create table charity (
+                         id bigint not null,
+                         name varchar(255),
+                         description varchar(255),
+                         about varchar(2048),
+                         site varchar(255),
+                         phone varchar(255),
+                         number_of_donors bigint,
+                         points bigint,
+
                          primary key (id)
 );
 
@@ -68,6 +82,23 @@ create table verification (
                               username varchar(255) not null,
                               primary key (id)
 );
+
+create table workers (
+                         id bigint not null,
+                         back_id_image_id varchar(255),
+                         created_at timestamp(6),
+                         driving_license_image_id varchar(255),
+                         email varchar(255),
+                         enabled boolean not null,
+                         front_id_image_id varchar(255),
+                         name varchar(255),
+                         password varchar(255),
+                         phone_number varchar(255),
+                         primary key (id)
+);
+
+alter table if exists workers
+    add constraint worker_email_key unique (email);
 
 alter table if exists role
     add constraint role_name_key unique (name);

@@ -1,6 +1,7 @@
 package edu.tanta.fci.reoil.catalog;
 
 import edu.tanta.fci.reoil.exceptions.NotFoundException;
+import edu.tanta.fci.reoil.exceptions.SubmitEmptyCartException;
 import edu.tanta.fci.reoil.user.UserService;
 import edu.tanta.fci.reoil.user.entities.User;
 import edu.tanta.fci.reoil.user.registration.events.UserRegistrationEvent;
@@ -105,6 +106,9 @@ public class CartUserService {
 
     final Cart cart = cartRepository.findCartByUser(user);
 
+    if (cart.getOrderLines().isEmpty()) {
+      throw new SubmitEmptyCartException("Cart is empty");
+    }
 
     Order order = new Order(cart);
     cart.getOrderLines().clear();

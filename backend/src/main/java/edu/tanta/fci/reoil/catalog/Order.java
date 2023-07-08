@@ -35,6 +35,7 @@ public class Order {
   @OneToMany(fetch = FetchType.EAGER)
   private List<OrderLine> orderLines;
 
+  @Enumerated(EnumType.STRING)
   private OrderStatus orderStatus;
 
   @CreationTimestamp

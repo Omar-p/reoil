@@ -41,7 +41,7 @@ class CharityControllerTest {
 
   @Test
   void itShouldReturnCharities() throws Exception {
-    BDDMockito.when(charityService.getCharities()).thenReturn(List.of(new Charity(1L, "مؤسسة مجدى يعقوب للقلب", "مؤسسة خيرية", 0L)));
+    BDDMockito.when(charityService.getCharities()).thenReturn(List.of(new Charity(1L, "مؤسسة مجدى يعقوب للقلب", "مؤسسة خيرية", 0L, null)));
     mvc
         .perform(RestDocumentationRequestBuilders.get("/api/v1/charities")
             .with(jwt().jwt((jwt) -> jwt.claim("scope", "USER"))))
@@ -71,6 +71,7 @@ class CharityControllerTest {
             "تعتمد مؤسسة مجدى يعقوب للقلب على التبرع والدعم المالي للقيام بمهمتها وانقاذ قلوب أطفال حيث اننا نطمح ونعمل على توسيع نطاق عملياتنا لتلبية الطلب الكبير والمتزايد على علاج القلب والأوعية الدموية للذين هم في أمس الحاجة إليه، وذلك إلى جانب تطوير العلاج والبحث واستثمار المواهب، بطريقة غير مسبوقة في المنطقة.",
             "email@email.com",
             "029876542",
+            null,
             List.of(
                 "برنامج القلب الأول",
                 "برنامج خيري",

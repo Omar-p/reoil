@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = PasswordPolicyValidator.class)
 public @interface PasswordPolicy {
-	String message() default "Password must contain at least 10 characters, 1 upper case, 1 lower case, 1 digit and 1 special character";
+	String message() default "Password must contain at least 8 characters, 1 upper case, 1 lower case, 1 digit and 1 special character";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

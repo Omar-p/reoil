@@ -35,6 +35,7 @@ public class CharityService {
         charity.getAbout(),
         charity.getSite(),
         charity.getPhone(),
+        charity.getImageUriId(),
         charity.getPrograms()
             .stream()
             .map(Program::getName)

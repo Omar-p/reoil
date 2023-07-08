@@ -2,10 +2,7 @@ package edu.tanta.fci.reoil.catalog;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,12 +16,17 @@ public class OrderController {
   private final OrderService orderService;
 
   @GetMapping
-  public List<OrderDto> getOrders() {
-    return orderService.getOrders();
+  public List<OrderDto> getOrders(@RequestParam(required = false) String status) {
+    return orderService.getOrders(status);
   }
 
   @GetMapping("/{trackingNumber}")
   public OrderDto getOrderById(@PathVariable("trackingNumber") UUID trackingNumber) {
     return orderService.getOrderById(trackingNumber);
+  }
+
+  @PostMapping("/{trackingNumber}")
+  public void cancelOrder(@PathVariable("trackingNumber") UUID trackingNumber) {
+    orderService.cancelOrder(trackingNumber);
   }
 }
